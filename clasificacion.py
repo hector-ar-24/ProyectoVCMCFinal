@@ -7,8 +7,8 @@ from PIL import Image, ImageEnhance
 import numpy as np
 import tensorflow as tf
 
-CATEGORIAS = ["SANA", "ENFERMA"]
-tamaño_img = 720
+CATEGORIAS = ["ENFERMA", "SANA"]
+tamaño_img = 1080
 
 def preparar(ruta):
     # Parámetros de edición
@@ -60,7 +60,7 @@ def preparar(ruta):
 
 def predecir(imagen):
     pred = tf.keras.models.load_model("modelos/cnn_model_neu64.keras")
-    categoria = CATEGORIAS[int(pred.predict([imagen])[0][0])]
+    categoria = CATEGORIAS[int(pred.predict([imagen])[0][1])]
     return categoria
 
 # Crear la interfaz gráfica
